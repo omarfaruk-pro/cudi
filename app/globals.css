@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #1e1e1e;
+  --foreground: #E4EAFF;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-poppins: var(--font-poppins);
+  --color-primary: #5500FF;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+a,
+button,
+img {
+  @apply ease-in-out duration-300;
+}
+
+.input_design {
+  @apply border border-white rounded-[40px] w-full text-base font-medium py-6.5 px-2 text-center leading-none;
+}
+
+.button_design {
+  @apply rounded-[40px] py-6.75 px-2 text-center text-[25px] font-semibold bg-primary text-white leading-none cursor-pointer;
+}
+
+.sidebar a {
+  display: flex;
+  gap: 11px;
+  font-size: 2rem;
+  font-weight: 500;
+  padding-block: 18px;
+  line-height: 1;
+  padding-inline: 14px;
+}
+
+.sidebar a img {
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+}
+
+.sidebar-open {
+  width: 580px;
+}
+
+.sidebar-close {
+  width: 72px;
+}
+
+.sidebar-close span {
+  display: none;
+
+}
+
+
+.sidebar-open a {
+  padding-inline: 36px;
+}
+
+.sidebar a:hover {
+  background-color: rgba(99, 99, 99, 0.31);
 }
