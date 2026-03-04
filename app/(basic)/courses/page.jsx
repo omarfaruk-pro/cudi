@@ -1,23 +1,40 @@
 import CourseCard from "./CourseCard";
+import PdfCard from "./PdfCard";
 import SearchInput from "./SearchInput";
 import Tabs from "./Tabs";
 
 
 export default async function CoursesPage({ searchParams }) {
-    const tab = await searchParams.tab ?? 'video';
-    const q = await searchParams.q ?? '';
+    const params = await searchParams;
+
+    const tab = params.tab ?? "video";
+    const q = params.q ?? "";
     return (
         <>
             <div className="px-10 pt-25 pb-10">
                 <Tabs currentTab={tab} />
                 <SearchInput defaultValue={q} />
-            </div>
-            <div className=" flex justify-center gap-x-10 gap-y-17 flex-wrap ">
-                <CourseCard />
-                <CourseCard />
-                <CourseCard />
-                <CourseCard />
-                <CourseCard />
+                {
+                    tab === "video" &&
+                    <div className=" flex gap-x-10 gap-y-7.5 flex-wrap mt-8">
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                        <CourseCard />
+                    </div>
+
+                }
+                {
+                    tab === "pdf" &&
+                    <div className=" flex gap-x-10 gap-y-7.5 flex-wrap mt-8">
+                        <PdfCard />
+                        <PdfCard />
+                        <PdfCard />
+                        <PdfCard />
+                        <PdfCard />
+                    </div>
+                }
             </div>
         </>
     )

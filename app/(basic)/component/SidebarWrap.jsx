@@ -17,13 +17,13 @@ export default function SidebarWrap({ children }) {
     return (
         <>
             <div className="flex gap-2.5 p-2.5">
-                <div className={`${open ? "sidebar-open" : "sidebar-close"} sidebar w-full shrink-0 bg-black py-15 rounded-xl`}>
+                <div className={`${open ? "sidebar-open" : "sidebar-close"} sidebar w-full shrink-0 bg-black py-15 rounded-xl sticky top-0 h-[calc(100vh-10px)]`}>
                     <div>
                         <button onClick={() => setOpen(!open)} className={`${open ? "px-9" : "px-5.5"} font-extrabold text-[28px] flex gap-5 items-center cursor-pointer`}>
                             <Image src={closeIcon} alt="Close" className={`w-8 ${!open && "rotate-180"}`} />
                             <span className={`${!open && "hidden"}`}>Bibliothèque</span>
                         </button>
-                        <ul className="mt-13 space-y-3 overflow-x-auto">
+                        <ul className="mt-13 space-y-3 overflow-x-auto h-[calc(100vh-180px)]">
                             <li>
                                 <NavLink href="/template">
                                     <Image src={templateIcon} alt="Template" className="w-8" />
@@ -75,7 +75,7 @@ export default function SidebarWrap({ children }) {
                         </ul>
                     </div>
                 </div>
-                <div className="w-full bg-foreground rounded-xl">{children}</div>
+                <div className="w-full bg-foreground rounded-xl text-black">{children}</div>
             </div>
         </>
     )

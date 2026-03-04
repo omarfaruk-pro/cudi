@@ -1,16 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import courseImg from '@/app/assets/images/course-img.png'
-import playIcon from '@/app/assets/images/play-icon.svg'
+import courseImg from '@/app/assets/images/pdf-img.png'
 
-
-export default function CourseCard() {
+export default function PdfCard() {
     return (
         <>
             <Link href="/courses" className="max-w-75 w-full">
                 <div className="relative">
                     <Image src={courseImg} alt="Template" className="w-full rounded-2xl" />
-                    <Image src={playIcon} alt="Template" className="w-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                 </div>
                 <div className="mt-2.5 px-4.5 text-black text-[15px] font-semibold ">
                     <h2>Titre</h2>
