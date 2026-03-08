@@ -19,63 +19,74 @@ export default function SidebarWrap({ children }) {
             <div className="flex gap-2.5 p-2.5">
                 <div className={`${open ? "sidebar-open" : "sidebar-close"} sidebar w-full shrink-0 bg-black py-15 rounded-xl sticky top-0 h-[calc(100vh-10px)]`}>
                     <div>
-                        <button onClick={() => setOpen(!open)} className={`${open ? "px-9" : "px-5.5"} font-extrabold text-[28px] flex gap-5 items-center cursor-pointer`}>
-                            <Image src={closeIcon} alt="Close" className={`w-8 ${!open && "rotate-180"}`} />
-                            <span className={`${!open && "hidden"}`}>Bibliothèque</span>
-                        </button>
-                        <ul className="mt-13 space-y-3 overflow-x-auto h-[calc(100vh-180px)]">
+                        <button
+                                onClick={() => setOpen(!open)}
+                                className={`font-bold text-2xl flex gap-5 items-center cursor-pointer transition-all duration-300 ease-in-out ${open ? "px-9" : "px-5.5"}`}
+                            >
+                                <Image
+                                    src={closeIcon}
+                                    alt="Close"
+                                    className={`w-8 transition-transform duration-300 ${!open && "rotate-180"}`}
+                                />
+                                <span
+                                    className={`transition-opacity duration-300 ease-in-out ${open ? "opacity-100" : "opacity-0"}`}
+                                >
+                                    Bibliothèque
+                                </span>
+                            </button>
+                        <ul className="mt-13 space-y-3 overflow-x-hidden overflow-y-auto h-[calc(100vh-180px)]">
                             <li>
                                 <NavLink href="/template">
-                                    <Image src={templateIcon} alt="Template" className="w-8" />
+                                    <Image src={templateIcon} alt="Template" className="w-10" />
                                     <span>Template</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink href="/ebooks">
-                                    <Image src={ebooksIcon} alt="Template" className="w-8" />
+                                    <Image src={ebooksIcon} alt="Template" className="w-10" />
                                     <span>Ebooks</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink href="/software">
-                                    <Image src={softwareIcon} alt="Template" className="w-8" />
+                                    <Image src={softwareIcon} alt="Template" className="w-10" />
                                     <span>Software</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink href="/music">
-                                    <Image src={musicIon} alt="Template" className="w-8" />
+                                    <Image src={musicIon} alt="Template" className="w-10" />
                                     <span>Music</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink href="/ui-kits">
-                                    <Image src={uiKitsIcon} alt="Template" className="w-8" />
+                                    <Image src={uiKitsIcon} alt="Template" className="w-10" />
                                     <span>UI Kits</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink href="/photos">
-                                    <Image src={photosIcon} alt="Template" className="w-8" />
+                                    <Image src={photosIcon} alt="Template" className="w-10" />
                                     <span>Photos</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink href="/courses">
-                                    <Image src={coursesIcon} alt="Template" className="w-8" />
+                                    <Image src={coursesIcon} alt="Template" className="w-10" />
                                     <span>Courses</span>
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink href="/pdf-editor">
-                                    <Image src={pdfEditorIcon} alt="Template" className="w-8" />
+                                    <Image src={pdfEditorIcon} alt="Template" className="w-10" />
                                     <span>PDF Editor</span>
                                 </NavLink>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div className="w-full bg-foreground rounded-xl text-black">{children}</div>
+                <div className="w-full bg-theme-white rounded-xl text-black">{children}</div>
             </div>
         </>
     )

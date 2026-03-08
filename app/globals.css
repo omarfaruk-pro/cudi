@@ -1,71 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #1e1e1e;
-  --foreground: #E4EAFF;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-poppins: var(--font-poppins);
+  --color-dark: #1e1e1e;
+  --color-theme-white: #E4EAFF;
   --color-primary: #5500FF;
+  --font-poppins: var(--font-poppins);
 }
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-size: 16px;
+  @apply bg-dark text-theme-white text-base leading-normal;
 }
-
 a,
-button,
-img {
+button {
   @apply ease-in-out duration-300;
 }
-
 .input_design {
-  @apply border border-white rounded-[40px] w-full text-base font-medium py-6.5 px-2 text-center leading-none;
+  @apply border border-white rounded-full w-full text-base font-medium py-4.5 px-2 text-center leading-none focus:outline-none;
 }
-
 .button_design {
-  @apply rounded-[40px] py-6.75 px-2 text-center text-[25px] font-semibold bg-primary text-white leading-none cursor-pointer;
+  @apply rounded-full inline-flex items-center justify-center py-3.75 px-5 text-center text-base font-semibold bg-primary text-white cursor-pointer min-w-44 hover:bg-white hover:text-dark;
 }
-
+.white_btn{
+  @apply bg-white text-dark hover:bg-primary hover:text-white
+}
+.sidebar {
+  /* animate width/spacing when toggling */
+  @apply transition-all duration-300 ease-in-out;
+}
 .sidebar a {
-  display: flex;
-  gap: 11px;
-  font-size: 2rem;
-  font-weight: 500;
-  padding-block: 18px;
-  line-height: 1;
-  padding-inline: 14px;
+  @apply flex items-center gap-2.5 text-2xl font-medium py-3.5 px-3.5 leading-none transition-all duration-300 ease-in-out;
 }
-
-.sidebar a img {
-  width: 43px;
-  height: 43px;
-  flex-shrink: 0;
-}
-
 .sidebar-open {
-  width: 580px;
+  @apply w-125;
 }
-
 .sidebar-close {
-  width: 72px;
+  @apply w-18;
 }
-
+.sidebar span {
+  @apply whitespace-nowrap transition-opacity duration-300 ease-in-out;
+}
 .sidebar-close span {
-  display: none;
-
+  @apply opacity-0;
 }
-
-
 .sidebar-open a {
-  padding-inline: 36px;
+  @apply px-8.5;
 }
-
 .sidebar a:hover {
   background-color: rgba(99, 99, 99, 0.31);
 }

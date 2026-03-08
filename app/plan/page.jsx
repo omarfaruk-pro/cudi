@@ -1,11 +1,11 @@
 
 import Link from 'next/link'
 import Footer from '../components/Footer'
-import { LuCircleChevronLeft } from "react-icons/lu";
 import logo from '@/app/assets/images/logo.png'
 import Image from 'next/image';
 import fileIcon from '@/app/assets/images/file.svg'
 import graduateIcon from '@/app/assets/images/graduate.svg'
+import BackButton from './Back';
 
 
 export default function PlanPage() {
@@ -13,7 +13,7 @@ export default function PlanPage() {
         <>
             <div className='min-h-screen flex flex-col justify-between'>
                 <div>
-                    <Link className='text-4xl ml-20 mt-20 inline-block' href={'/'}><LuCircleChevronLeft /></Link>
+                    <BackButton></BackButton>
                     <div className='text-center px-5 mb-30'>
                         <Image src={logo} alt="Logo" className="w-45 mx-auto" />
                         <p className='mt-15 text-white text-[25px] mb-21'>Choisissez votre plan !</p>

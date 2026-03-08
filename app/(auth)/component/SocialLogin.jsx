@@ -6,15 +6,15 @@ import Image from 'next/image'
 export default function SocialLogin() {
     return (
         <>
-            <div className="flex justify-center items-center gap-12">
-                <button>
-                    <Image src={googleIcon} alt="Google" className='w-14.5' />
+            <div className="flex justify-center items-center gap-10">
+                <button className='cursor-pointer'>
+                    <Image src={googleIcon} alt="Google" className='h-12 w-auto' />
                 </button>
-                <button>
-                    <Image src={appleIcon} alt="Apple" className='w-11.5' />
+                <button className='cursor-pointer'>
+                    <Image src={appleIcon} alt="Apple" className='h-12 w-auto' />
                 </button>
-                <button>
-                    <Image src={facebookIcon} alt="Facebook" className='w-15' />
+                <button className='cursor-pointer'>
+                    <Image src={facebookIcon} alt="Facebook" className='h-12 w-auto' />
                 </button>
             </div>
         </>
