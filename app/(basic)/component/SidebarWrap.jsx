@@ -2,7 +2,7 @@
 import closeIcon from "@/app/assets/images/close-icon.svg";
 import NavLink from "@/app/components/NavLink";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import templateIcon from "@/app/assets/images/template-icon.svg";
 import ebooksIcon from "@/app/assets/images/ebooks-icon.svg";
 import softwareIcon from "@/app/assets/images/software-icon.svg";
@@ -11,29 +11,30 @@ import uiKitsIcon from "@/app/assets/images/ui-kits-icon.svg";
 import photosIcon from "@/app/assets/images/photo-icon.svg";
 import coursesIcon from "@/app/assets/images/courses-icon.svg";
 import pdfEditorIcon from "@/app/assets/images/pdf-editor-icon.svg";
+import { SidebarContext } from "@/app/context/sidebar/context";
 
 export default function SidebarWrap({ children }) {
-    const [open, setOpen] = useState(false);
+    const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
     return (
         <>
             <div className="flex gap-2.5 p-2.5">
-                <div className={`${open ? "sidebar-open" : "sidebar-close"} sidebar w-full shrink-0 bg-black py-10 rounded-xl sticky top-0 h-[calc(100vh-10px)]`}>
+                <div className={`${sidebarOpen ? "sidebar-open" : "sidebar-close"} sidebar w-full shrink-0 bg-black py-10 rounded-xl sticky top-0 h-[calc(100vh-10px)]`}>
                     <div>
                         <button
-                                onClick={() => setOpen(!open)}
-                                className={`font-bold text-2xl flex gap-5 items-center cursor-pointer transition-all duration-300 ease-in-out ${open ? "px-9" : "px-5.5"}`}
+                            onClick={() => setSidebarOpen(!sidebarOpen)}
+                            className={`font-bold text-2xl flex gap-5 items-center cursor-pointer transition-all duration-300 ease-in-out ${sidebarOpen ? "px-9" : "px-5.5"}`}
+                        >
+                            <Image
+                                src={closeIcon}
+                                alt="Close"
+                                className={`w-8 transition-transform duration-300 ${!sidebarOpen && "rotate-180"}`}
+                            />
+                            <span
+                                className={`transition-opacity duration-300 ease-in-out ${sidebarOpen ? "opacity-100" : "opacity-0"}`}
                             >
-                                <Image
-                                    src={closeIcon}
-                                    alt="Close"
-                                    className={`w-8 transition-transform duration-300 ${!open && "rotate-180"}`}
-                                />
-                                <span
-                                    className={`transition-opacity duration-300 ease-in-out ${open ? "opacity-100" : "opacity-0"}`}
-                                >
-                                    Bibliothèque
-                                </span>
-                            </button>
+                                Bibliothèque
+                            </span>
+                        </button>
                         <ul className="mt-8 space-y-3">
                             <li>
                                 <NavLink href="/template">
