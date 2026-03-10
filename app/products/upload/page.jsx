@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FaCamera } from 'react-icons/fa';
 import { FaCirclePlus } from 'react-icons/fa6';
+import { AiOutlineBulb } from "react-icons/ai";
 import BackButton from '@/app/plan/Back';
 import Image from 'next/image';
 
@@ -20,6 +21,36 @@ export default function ProductUploadPage() {
     const [profileImage, setProfileImage] = useState(null);
     const [coverImage, setCoverImage] = useState(null);
     const [previewUrl, setPreviewUrl] = useState(null);
+    const [uploadedFiles, setUploadedFiles] = useState([]);
+
+    const handleFileUpload = (e) => {
+        const files = Array.from(e.target.files);
+        const validTypes = ['application/pdf', 'image/jpeg', 'image/png', 'audio/mpeg', 'video/mp4'];
+        const validFiles = files.filter(file => validTypes.includes(file.type));
+        
+        if (validFiles.length !== files.length) {
+            alert('Certains fichiers ne sont pas pris en charge. Seuls PDF, JPEG, PNG, MP3, MP4 sont autorisés.');
+        }
+        
+        const newFiles = validFiles.map(file => ({
+            file,
+            preview: file.type.startsWith('image/') ? URL.createObjectURL(file) : null,
+            type: file.type
+        }));
+        
+        setUploadedFiles(prev => [...prev, ...newFiles]);
+    };
+
+    const removeFile = (index) => {
+        setUploadedFiles(prev => {
+            const newFiles = [...prev];
+            if (newFiles[index].preview) {
+                URL.revokeObjectURL(newFiles[index].preview);
+            }
+            newFiles.splice(index, 1);
+            return newFiles;
+        });
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -67,7 +98,7 @@ export default function ProductUploadPage() {
                     <form onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             {/* Profile Picture Section */}
-                            <div className="flex flex-col items-center mb-8 sm:col-span-2">
+                            <div className="flex flex-col items-center mb-4 sm:col-span-2">
                                 <label htmlFor="profile-upload" className="cursor-pointer relative mb-4">
                                     <div className="w-47.5 aspect-square rounded-full bg-gray-700 flex items-center justify-center border-2 border-dashed border-gray-600 hover:border-primary transition overflow-hidden">
                                         {profileImage ? (
@@ -108,6 +139,53 @@ export default function ProductUploadPage() {
                                     onChange={handleInputChange}
                                     className="input_design border-black! text-black! rounded-xl! py-4!"
                                 />
+                            </div>
+                            <div className='sm:col-span-2 text-center'>
+                                <div className="file-uploader flex flex-col gap-4">
+                                    <input
+                                        type="file"
+                                        multiple
+                                        accept=".pdf,.jpeg,.jpg,.png,.mp3,.mp4"
+                                        onChange={handleFileUpload}
+                                        className="hidden"
+                                        id="file-upload"
+                                    />
+                                    <label htmlFor="file-upload" className="cursor-pointer bg-gray-200 px-3 py-3.5 rounded-xl text-center flex items-center gap-2 justify-center shadow-lg">
+                                        <FaCirclePlus className="text-xl" />
+                                        <p>Ajouter un fichier</p>
+                                    </label>
+                                    <div className="uploaded-files space-y-2">
+                                        {uploadedFiles.map((item, index) => (
+                                            <div key={index} className="file-item flex items-center gap-4 p-3 bg-gray-100 rounded-lg">
+                                                {item.preview ? (
+                                                    <Image src={item.preview} width={48}
+                                            height={48} alt="aperçu" className="w-12 h-12 object-cover rounded" />
+                                                ) : (
+                                                    <div className="w-12 h-12 bg-gray-300 flex items-center justify-center rounded text-sm font-medium">
+                                                        {item.type === 'application/pdf' ? 'PDF' : item.type.includes('audio') ? 'MP3' : 'MP4'}
+                                                    </div>
+                                                )}
+                                                <div className="min-w-0 text-left">
+                                                    <p className="text-sm font-medium text-gray-900 truncate">{item.file.name}</p>
+                                                    <p className="text-xs text-gray-500">{(item.file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                                </div>
+                                                <button 
+                                                    onClick={() => removeFile(index)} 
+                                                    className="text-red-500 ml-auto cursor-pointer hover:text-red-700 text-sm font-medium"
+                                                >
+                                                    Supprimer
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='sm:col-span-2 text-center'>
+                                <p className='mb-3'>Ou</p>
+                                <div className='bg-[#BCA2EF] flex items-start gap-2.5 justify-center text-center rounded-xl py-2.5 px-4 leading-tight text-white shadow-lg'>
+                                    <AiOutlineBulb className='text-lg' />
+                                    <span>Cours en ligne en direct <strong className='font-semibold block'>sur rendez-vous</strong></span>
+                                </div>
                             </div>
 
                             {/* Titre Field */}

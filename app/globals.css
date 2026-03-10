@@ -13,6 +13,9 @@ a,
 button {
   @apply ease-in-out duration-300;
 }
+html{
+  @apply sm:text-[1.9vw] lg:text-[0.95vw]
+}
 .input_design {
   @apply border border-white rounded-full w-full text-base font-medium py-4.5 px-2 text-center leading-none focus:outline-none;
 }

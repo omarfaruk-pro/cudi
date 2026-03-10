@@ -17,7 +17,7 @@ export default function SidebarWrap({ children }) {
     return (
         <>
             <div className="flex gap-2.5 p-2.5">
-                <div className={`${open ? "sidebar-open" : "sidebar-close"} sidebar w-full shrink-0 bg-black py-15 rounded-xl sticky top-0 h-[calc(100vh-10px)]`}>
+                <div className={`${open ? "sidebar-open" : "sidebar-close"} sidebar w-full shrink-0 bg-black py-10 rounded-xl sticky top-0 h-[calc(100vh-10px)]`}>
                     <div>
                         <button
                                 onClick={() => setOpen(!open)}
@@ -34,7 +34,7 @@ export default function SidebarWrap({ children }) {
                                     Bibliothèque
                                 </span>
                             </button>
-                        <ul className="mt-13 space-y-3 overflow-x-hidden overflow-y-auto h-[calc(100vh-180px)]">
+                        <ul className="mt-8 space-y-3">
                             <li>
                                 <NavLink href="/template">
                                     <Image src={templateIcon} alt="Template" className="w-10" />

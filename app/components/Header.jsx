@@ -28,7 +28,7 @@ export default function Header() {
                         <Image src={heartIcon} alt="Wishlist icon" className="w-full" />
                         <span className="absolute -top-2.5 -right-1 font-extrabold text-base text-primary">0</span>
                     </div>
-                    <div className="mx-10"><Image src={cartIcon} alt="Cart icon" /></div>
+                    <div className="mx-10 w-6.5"><Image src={cartIcon} class="w-100" alt="Cart icon" /></div>
                     <Link href="/register" className="font-semibold text-base mr-5 inline-block text-white hover:text-primary">S’inscrire</Link>
                     <Link href="/login" className="button_design white_btn">Se connecter</Link>
                 </div>
